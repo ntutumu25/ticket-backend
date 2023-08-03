@@ -1,0 +1,29 @@
+<div class="container-table">
+    <div class="busqueda-container">
+        <h1>LISTA DE USUARIOS DEL SISTEMA</h1>
+    </div>
+    <div class="tabla">
+        <table class="table table-striped">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Fecha de Alta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each usuarios}}
+                <tr>
+                   
+                    <th scope="row">{{_id}}</th>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td>{{date}}</td>
+                </tr>
+                {{/each}}
+                
+            </tbody>
+        </table>
+    </div>
+</div>

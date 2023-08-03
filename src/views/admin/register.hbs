@@ -1,0 +1,45 @@
+<div class="register-container">
+ {{#each errors}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{text}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/each}} 
+
+  <div class="card bg-dark text-light tarjetaForm">
+    <div class="card-header ">
+      <h4 class="text-center">
+        Register
+      </h4>
+    </div>
+    <div class="card-body">
+      <form action="/auth/register" method="POST">
+        <div class="mb-3">
+          <input type="text" required class="form-control bg-dark text-white" name="nombre" placeholder="Prenom"
+            value="{{nombre}}" />
+        </div>
+        <div class="mb-3">
+          <input type="text" required class="form-control bg-dark text-white" name="apellidos" placeholder="Nom"
+            value="{{apellidos}}" />
+        </div>
+        <div class="mb-3">
+          <input type="number" required class="form-control bg-dark text-white" name="matricula" placeholder="Matricule" value="{{matricula}}"/>
+        </div>
+        <div class="mb-3">
+          <input type="password" required class="form-control bg-dark text-white" name="password"
+            placeholder="Mot de pass" />
+        </div>
+        <div class="mb-3">
+          <input type="password" required class="form-control bg-dark text-white" name="confirm_password"
+            placeholder="Confirmer mot de pass" />
+        </div>
+        <button class="btn btn-success col-12">
+          Register
+        </button>
+      </form>
+    </div>
+    <p class="text-center">vous avez un compte?
+      <a href="/auth/login" class="text-info">Login</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title id="titulo">TI | Admin</title>
+  <!-- stylos bootstrap remotos-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+  <!-- FONT AWESOME -->
+  {{!--
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> --}}
+  <script src="https://kit.fontawesome.com/0d0d3157b0.js" crossorigin="anonymous"></script>
+  {{!-- animate css --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+  {{!-- stylos bootstrap locales--}}
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- stylos css locales-->
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/register.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/all.min.css">
+</head>
+
+<body style="margin: 0px; padding: 0px;">
+
+  {{> navigation }}
+
+
+  <main class="main animated fadeInDown" style="animation-fill-mode: unset;">
+    <div class="alerta">
+      {{> errors }}
+      {{> messages}}
+    </div>
+    {{{ body }}}
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="contactos-container">
+        <div class="info">
+          <ul>
+            <li>INFO</li>
+            </li>
+            <li>CONTACT</li>
+            <li>PRODUCTS</li>
+            <li>ABOUT US</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Scritps -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</body>
+  
+
+</html>

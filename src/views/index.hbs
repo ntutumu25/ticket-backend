@@ -1,0 +1,114 @@
+<div class="main-container">
+    <div class="banner">
+        <div class="title-container">
+            <h1 class="text-light">mumbeX</h1>
+            <p class="text-light">{{mensaje}}, <span id="os"></span></p>
+
+        </div>
+    </div>
+    <div class="main-body">
+        <div class="body-header mb-5">
+            <h1>ALL POSTS</h1>
+        </div>
+
+        <div class="tarjetas-post">
+            {{#each libros}}
+
+            <div class="card m-2" style="width: 18rem;">
+                {{!-- tarjeta post --}}
+                <a href="{{image}}" target="_blank" style="text-decoration: none;">
+                    <img src={{image}} class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title mb-0">{{title}}</h4>
+                    <p class="description">{{description}}</p>
+                    <p class="">Autor: {{autor.name}}</p>
+                    <p class="text-primary">{{date}}</p>
+                    {{#if userLike}}
+                    <a href="/post/{{_id}}/unlike" class="btn bg-danger">
+                        <i class="fa-sharp fa-solid fa-house  text-danger"></i>
+                    </a>
+                    {{else}}
+                    <a href="/post/{{_id}}/like" class="btn bg-primary "><i class="fa-sharp fa-solid fa-house"></i></a>
+                    {{/if}}
+
+                    <div class="like-comment-container">
+                        <button class="btn">
+                            <p class=" dropdown-toggle" style="margin-bottom: 0px;">
+                                {{numberLike}} likes
+                            </p>
+
+                            <ul class="dropdown-menu">
+                                {{#each likes}}
+                                <li class="dropdown-item ">{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </button>
+
+                        <button class="btn dropdown-toggle " data-bs-toggle="modal" data-bs-target="#mbia{{_id}}">
+                            {{numberComment}} comments
+                        </button>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            {{!-- modal card para agregar un comentario de cada post --}}
+            <div class="modal fade" id="mbia{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header text-light" style="background: #000000;
+                            background: -webkit-linear-gradient(to right, #434343, #000000);
+                            background: linear-gradient(to right, #434343, #000000); ">
+                            <h3>{{title}}</h3>
+                            <button type="button text-danger" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body " style="background-color: #434343;">
+                            {{#each comment}}
+                            <div class="comentario-container ">
+                                <div class="user-date">
+                                    <p>{{autor}}</p>
+                                    <span>{{date}}</span>
+                                </div>
+
+                                <p>{{comment}}</p>
+
+                            </div>
+
+                            {{/each}}
+
+
+                        </div>
+
+                        <div class="modal-footer"
+                            style="background: #000000;  /* fallback for old browsers */
+                                background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+                                background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
+
+                            <form class="formComment" action="/user/{{_id}}/comment" method="post">
+                                <div class="comment-container">
+                                    <textarea class="form-control bg-dark text-light" required name="comment"
+                                        type="text" placeholder="your comment"></textarea>
+                                    <button class="btn mt-1 btn-success" type="submit">comment</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            {{/each}}
+        </div>
+
+    </div>
+    <script src="/js/index.js"></script>
+</div>

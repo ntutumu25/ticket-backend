@@ -1,0 +1,251 @@
+<div class="contenedor-principal-admin">
+
+
+    <div class="info-admin" id="info-admin">
+        <div class="head-menu">
+            <div class="" style="margin-left:4px;">
+                <a href="/admin">
+                    <h4 class="text-light ">Mbia</h4>
+                </a>
+            </div>
+            <div class="icono-menu"><button onclick="ToggleFuncion()">&#9776;</button></div>
+        </div>
+        <div class="menu-container">
+
+            <div class="items items-select" id="dashboard" onclick="SelectDashboard()">
+                <i class="fa-solid fa-gauge"></i>
+                <span class="items-text" id="text-dashboard"> Dashboard</span>
+
+            </div>
+
+            <div class="items" id="ajouter" onclick="SelectAjouter()">
+                <i class="fa-solid fa-user-plus"></i>
+                <span class="items-text" id="text-ajouter"> Ajouter</span>
+
+            </div>
+
+            <div class="items config" id="config" onclick="SelectConfig()">
+                <i class="fa-solid fa-gear"></i>
+                <span class="items-text" id="text-config">Advance</span>
+
+            </div>
+            <a href="/auth/logout" class="text-dark">
+                <div class="items quiter" id="quiter">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="items-text" id="text-quiter">
+                        Quiter
+                    </span>
+
+                </div>
+            </a>
+
+
+
+        </div>
+    </div>
+
+    <div class="tareas-admin" id="tareas-admin">
+
+        <div class="barra-navegacion">
+            <div class="letra-user" id="letra-user"></div>
+            <div class="nombre-user">
+                <p style="color:darkgreen">Administrateur</p>
+                <div class="dropdown " style="margin-right: 50px;">
+                    <p class=" dropdown-toggle text-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span id="nombre-user" class="">{{user.apellidos}}</span>
+
+                    </p>
+                    <ul class="dropdown-menu bg-light">
+                        {{!-- <li style=""><a class="dropdown-item text-dark" href="/users/space/">Perfil</a></li>
+                        --}}
+                        <li><a class="dropdown-item text-dark" href="/auth/logout">Quiter</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="envoltorio-tareas">
+            <div class="fila1-encabezado " id="dashboardInfo">
+
+                <div class="banner-dashboard col-8">
+                    <div>
+                        <h3 style="display:flex; align-items:center; justify-content:center;">Bienvenu</h3>
+                        <h5 style="color:rgb(93, 94, 95)">{{user.nombre}} {{user.apellidos}}</h5>
+                    </div>
+
+                </div>
+
+
+                <div class="number-user-info col-2">
+                    <h6>6+ usuarios</h6>
+                </div>
+
+            </div>
+
+            <div class="fila2 display-info-hidden" id="ajouterInfo">
+                <div class="buscar-botonAdd-container">
+                    <div class="buscar-container">
+                        <form onsubmit="handleBusqueda(event)">
+                            <div style="display:flex;">
+                                <input type="text" id="valorBusqueda" name="valorBusqueda" class="input-buscar"
+                                    placeholder="Prenom">
+                                <button class="buton-buscar">Chercher</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="botonAdd-container">
+                        <button class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#addUser">Ajouter</button>
+                    </div>
+                </div>
+                <div class="table-container mt-5">
+                    <table class="table table-striped table-hover " style="font-size: small;">
+                        <thead id="encabezadoTabla">
+                            <tr>
+
+                                <th scope="col">Matricule</th>
+                                <th scope="col">Nom </th>
+                                <th scope="col">Prenom </th>
+                                <th scope="col"> Departement</th>
+                                 <th scope="col"> Pilote</th>
+                                <th scope="col">Date Up </th>
+                                <th scope="col">Cree par </th>
+                                <th scope="col">Etat</th>
+                                <th scope="col">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="tablaBody">
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+        {{!-- ventanas modales --}}
+        <div class="modal fade" style="width:200pxh; " id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            {{!-- modal para crear un nuevo usuario del frontend --}}
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content" style="background-color: #d6d8d8;">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="exampleModalLabel">Ajouter un nouvel utilisateur</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="display:flex; align-items:center; justify-content:center;">
+                        <form class="form-add-user" onsubmit="handleSubmit(event)">
+                            <div class="mb-3 mt-3">
+                                <input type="text" required class="input-insert text-white" name="apellidos"
+                                    placeholder="Nom" />
+                                <input type="text" required class="input-insert text-white" name="nombre"
+                                    placeholder="Prenom" />
+                            </div>
+
+                             <div class="mb-3 mt-3">
+                                <select name="departamento" required class="departamento">
+                                    <option value="none" disabled selected>Departement</option>
+                                    <option value="IRE-IGC">IRE-IGC</option>
+                                    <option value="SLI">SLI</option>
+                                    <option value="ENA-MTEO">ENA-MTEO</option>
+                                    <option value="CDT">CDT</option>
+                                </select>
+
+                                <input type="number" required class="input-insert text-white" name="matricula"
+                                    placeholder="Matricule" />
+                            </div>
+                            <div class="mb-3 mt-3">
+                                {{!-- <input type="password" required class="input-insert text-white" name="password"
+                                    placeholder="Mot de pass" />
+                                <input type="password" required class="input-insert text-white" name="confirm_password"
+                                    placeholder="Confirmer mot de pass" /> --}}
+
+                            </div>
+                            <button class="btn btn-success">
+                                Registrer
+                            </button>
+                            <input type="reset" class="btn btn-danger" value="Reset">
+                            <div class=" alert-danger display-alerta mt-5 alert-dismissible fade show" id="alerta"
+                                role="alert" style="display:flex; align-items:center; justify-content:center;">
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {{!-- -------------------- --}}
+        <div class="modal fade" id="editarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {{!-- modal para editar el usuario --}}
+            <div class="modal-dialog modal-lg  modal-dialog modal-dialog-centered">
+                <div class="modal-content " style="background-color: #d6d8d8;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="display:flex; align-items:center; justify-content:center;">
+                        <form id="formularioEditar" onsubmit="handleEditar(event)">
+                             <div class="mb-3 mt-3">
+                                <input type="text" id="apellidos" class="input-insert text-white" name="apellidos"
+                                    placeholder="Nom" />
+                                <input type="text" id="nombre" class="input-insert text-white" name="nombre"
+                                    placeholder="Prenom" />
+                               <input type="text" id="id" style="display: none;">
+                            </div>
+
+                            <div class="mb-3 mt-3">
+                                <select id="departamento" name="departamento" required class="departamento">
+                                    <option value="none" disabled selected>Departement</option>
+                                    <option value="IRE-IGC">IRE-IGC</option>
+                                    <option value="SLI">SLI</option>
+                                    <option value="ENA-MTEO">ENA-METO</option>
+                                    <option value="CDT">CDT</option>
+
+                                </select>
+
+                                <input type="number" required id="matricula" class="input-insert text-white" name="matricula"
+                                    placeholder="Matricule" />
+                            </div>
+                            <div class="mb-3 mt-3">
+    
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="estado">Etat</label>
+                                <select id="estado">
+                                    <option value='DESACTIVE'>Desactive</option>
+                                    <option value='ACTIVE'>Active</option>
+                                </select>
+                                <label for="piloto">Pilote</label>
+                                <select  id="piloto">
+                                    <option value='none'>none</option>
+                                    <option value='IRE-IGC'>IRE-IGC</option>
+                                    <option value='ENA-MTEO'>ENA-MTEO</option>
+                                    <option value='SLI'>SLI</option>
+                                    <option value='CDT'>CDT</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-success">
+                                Sauver
+                            </button>
+                            <div class=" alert-danger display-alerta mt-5 alert-dismissible fade show" id="alertaEdite"
+                                role="alert" style="display:flex; align-items:center; justify-content:center;">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script src="/js/admin.js"></script>
+</div>

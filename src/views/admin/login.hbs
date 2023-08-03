@@ -1,0 +1,36 @@
+<div class="register-container">
+  {{#if error}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+
+
+  <div class="card bg-dark text-light tarjetaFormLogin">
+    <div class="card-header ">
+      <h4 class="text-center">
+        Login
+      </h4>  
+    </div>
+    
+    <div class="card-body">
+      <form action="/auth/login" method="POST">
+        <div class="mb-3">
+          <input type="number" required class="form-control bg-dark text-white" name="matricula" placeholder="Matricule" />
+        </div>
+        <div class="mb-3">
+          <input type="password" required class="form-control bg-dark text-white" name="password"
+            placeholder="Mot de pass" />
+        </div>
+
+        <button class="btn btn-success col-12">
+          Entrer
+        </button>
+      </form>
+    </div>
+    <p class="text-center">vous n'avez pas de compte?
+      <a href="/auth/register" class="text-info">Registrer</a>
+    </p>
+  </div>
+</div>

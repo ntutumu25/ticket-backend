@@ -1,0 +1,24 @@
+<nav class="navbar bg-dark navegation-container" id="barra-nav">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand text-light">MBIA</a>
+
+    {{#if user}}
+    <div class="item-menu">
+
+      <a class="text-light" style="display: flex; align-items:center; justify-content:center;">
+        <div style="height:15px; width:15px; background-color:green; border-radius:60%; margin-right:3px;"></div>{{user.matricula}}
+      </a>
+      <a class="text-danger" href="/auth/logout">Sortir</a>
+
+    </div>
+
+
+    {{else}}
+    <div class="item-menu">
+      <a class="text-light" href="/auth/login">Login</a>
+      <a class="text-light" href="/auth/register">Register</a>
+    </div>
+
+    {{/if}}
+  </div>
+</nav>
