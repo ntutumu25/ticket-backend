@@ -164,7 +164,7 @@ const registerUser = async (req, res) => {
     alerta.push({ text: 'exito'});
     res.json({alerta}) 
 }
-
+ 
 const userEdite = async(req, res)=>{
     //funcion para editar el usuario selecionado y mostrar los datos a editart
     const {id} = req.params

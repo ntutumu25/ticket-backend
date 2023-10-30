@@ -7,6 +7,8 @@ const {login, updateUser, primerLogin, getTicket,
 
 //------------METODOS GET-------------------------------------------------------
 router.get('/update', updateUser) // ruta privilegios de login admin backend
+
+
 router.get('/ticket/:option/:usuario/:departamento', getTicket) // ruta para obtener tickets
 
 
