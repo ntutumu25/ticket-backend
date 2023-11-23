@@ -7,7 +7,8 @@ const Admin = require('../models/admin')
 const { format } = require('timeago.js')
 const bcrypt = require("bcryptjs");
 //const Post = require("../models/post")
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const ticket = require("../models/ticket");
 
 
 ///----------------------------------------------------
@@ -122,6 +123,9 @@ const primerLogin = async (req, res) => {
 
 }
 
+
+
+//---------FUNCIONES DE MANEJO DE TICKETS-----------------------
 const addTicket = async (req, res) => {
   // funcion de agregar un ticket
   const { titulo, comentario, prioridad, departamento_objetivo, autor, departamento_origen } = req.body
@@ -200,10 +204,54 @@ const getTicket = async (req, res) => {
 
 }
 
+
+const editeTicket = async (req, res) =>{
+  // encontrar el ticket para editar
+
+  Ticket.findById(req.params.id, function (err, ticket) {
+    User.populate(ticket, { path: "autor" }, function (err, ticket) {
+      // console.log(ticket)
+      res.status(200).json({ ticket })
+    })
+
+  }).sort({ fecha_creacion: "desc" }).lean()
+
+} 
+
+
+const commentTicket = async (req, res) =>{
+  // controlador para agregar un comentario
+  const {id, comentario, usuario} = req.body
+  
+  const ticket = await Ticket.findByIdAndUpdate(id, {$push:{comentarios:{
+    usuario:usuario,
+    comentario:comentario,
+  }}})
+  res.status(200).json({respuesta: {
+    tipo: 'exito',
+    sms: 'guardado el mentario'
+  }})
+}
+
+const closeTicket = async(req, res) =>{
+
+  const ticket = await Ticket.findByIdAndUpdate(req.params.id, {estado:false, usuario_cirre:req.params.usuario, fecha_cirre: Date.now()})
+  res.status(200).json(
+    {respuesta: {
+      tipo: 'exito',
+      sms: 'cerrado'
+    }}
+  )
+}
+
+
 module.exports = {
   login,
   updateUser,
   primerLogin,
   addTicket,
-  getTicket
+  getTicket,
+  editeTicket, 
+  commentTicket,
+  closeTicket
 }

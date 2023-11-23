@@ -20,7 +20,7 @@ const TicketSchema = new mongoose.Schema(
       {
         usuario: {type:String},
         comentario:{type:String, lowercase:true},
-        fecha:{type:Date, default:Date.now}
+        fecha:{type:Date, default: Date.now}
       }
     ]
     
